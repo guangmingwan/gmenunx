@@ -329,8 +329,8 @@ void Menu::pageUp() {
 
 void Menu::pageDown() {
 	// PAGEDOWN with right
-	if (iLink + gmenu2x->linkRows > sectionLinks()->size()) {
-		setLinkIndex(sectionLinks()->size() - 1);
+	if (iLink + gmenu2x->linkRows > sectionLinksSize()) {
+		setLinkIndex(sectionLinksSize() - 1);
 	} else {
 		setLinkIndex(iLink + gmenu2x->linkRows - 1);
 	}
@@ -338,13 +338,13 @@ void Menu::pageDown() {
 
 void Menu::linkLeft() {
 	// if (iLink % gmenu2x->linkCols == 0)
-		// setLinkIndex(sectionLinks()->size() > iLink + gmenu2x->linkCols - 1 ? iLink + gmenu2x->linkCols - 1 : sectionLinks()->size() - 1 );
+		// setLinkIndex(sectionLinksSize() > iLink + gmenu2x->linkCols - 1 ? iLink + gmenu2x->linkCols - 1 : sectionLinksSize() - 1 );
 	// else
 		setLinkIndex(iLink - 1);
 }
 
 void Menu::linkRight() {
-	// if (iLink % gmenu2x->linkCols == (gmenu2x->linkCols - 1) || iLink == (int)sectionLinks()->size() - 1)
+	// if (iLink % gmenu2x->linkCols == (gmenu2x->linkCols - 1) || iLink == (int)sectionLinksSize() - 1)
 		// setLinkIndex(iLink - iLink % gmenu2x->linkCols);
 	// else
 		setLinkIndex(iLink + 1);
@@ -353,9 +353,9 @@ void Menu::linkRight() {
 void Menu::linkUp() {
 	int l = iLink - gmenu2x->linkCols;
 	if (l < 0) {
-		uint32_t rows = (uint32_t)ceil(sectionLinks()->size() / (double)gmenu2x->linkCols);
+		uint32_t rows = (uint32_t)ceil(sectionLinksSize() / (double)gmenu2x->linkCols);
 		l += (rows * gmenu2x->linkCols);
-		if (l >= (int)sectionLinks()->size())
+		if (l >= (int)sectionLinksSize())
 			l -= gmenu2x->linkCols;
 	}
 	setLinkIndex(l);
@@ -363,11 +363,11 @@ void Menu::linkUp() {
 
 void Menu::linkDown() {
 	uint32_t l = iLink + gmenu2x->linkCols;
-	if (l >= sectionLinks()->size()) {
-		uint32_t rows = (uint32_t)ceil(sectionLinks()->size() / (double)gmenu2x->linkCols);
+	if (l >= sectionLinksSize()) {
+		uint32_t rows = (uint32_t)ceil(sectionLinksSize() / (double)gmenu2x->linkCols);
 		uint32_t curCol = (uint32_t)ceil((iLink+1) / (double)gmenu2x->linkCols);
 		if (rows > curCol)
-			l = sectionLinks()->size() - 1;
+			l = sectionLinksSize() - 1;
 		else
 			l %= gmenu2x->linkCols;
 	}
@@ -379,7 +379,7 @@ int Menu::selLinkIndex() {
 }
 
 Link *Menu::selLink() {
-	if (sectionLinks()->size() == 0) return NULL;
+	if (sectionLinksSize() == 0) return NULL;
 	return sectionLinks()->at(iLink);
 }
 
@@ -389,8 +389,8 @@ LinkApp *Menu::selLinkApp() {
 
 void Menu::setLinkIndex(int i) {
 	if (i < 0)
-		i = sectionLinks()->size() - 1;
-	else if (i >= (int)sectionLinks()->size())
+		i = sectionLinksSize() - 1;
+	else if (i >= (int)sectionLinksSize())
 		i = 0;
 
 	if (i >= (int)(iFirstDispRow * gmenu2x->linkCols + gmenu2x->linkCols * gmenu2x->linkRows))

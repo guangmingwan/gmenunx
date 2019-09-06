@@ -53,7 +53,7 @@ public:
 	~Menu();
 
 	linklist *sectionLinks(int i = -1);
-
+	int sectionLinksSize();
 	int selSectionIndex();
 	int sectionNumItems();
 

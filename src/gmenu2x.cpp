@@ -417,7 +417,7 @@ void GMenu2X::main() {
 		if (linkCols == 1) {
 			// LIST
 			ix = linksRect.x;
-			for (y = 0; y < linkRows && i < menu->sectionLinks()->size(); y++, i++) {
+			for (y = 0; y < linkRows && i < menu->sectionLinksSize(); y++, i++) {
 				iy = linksRect.y + y * linkHeight;
 
 				if (i == (uint32_t)menu->selLinkIndex())
@@ -429,7 +429,7 @@ void GMenu2X::main() {
 			}
 		} else {
 			for (y = 0; y < linkRows; y++) {
-				for (x = 0; x < linkCols && i < menu->sectionLinks()->size(); x++, i++) {
+				for (x = 0; x < linkCols && i < menu->sectionLinksSize(); x++, i++) {
 					ix = linksRect.x + x * linkWidth  + (x + 1) * linkSpacing;
 					iy = linksRect.y + y * linkHeight + (y + 1) * linkSpacing;
 
@@ -446,7 +446,7 @@ void GMenu2X::main() {
 		}
 		s->clearClipRect();
 
-		drawScrollBar(linkRows, menu->sectionLinks()->size()/linkCols + ((menu->sectionLinks()->size()%linkCols==0) ? 0 : 1), menu->firstDispRow(), linksRect);
+		drawScrollBar(linkRows, menu->sectionLinksSize()/linkCols + ((menu->sectionLinksSize()%linkCols==0) ? 0 : 1), menu->firstDispRow(), linksRect);
 
 		// TRAY DEBUG
 		// s->box(sectionBarRect.x + sectionBarRect.w - 38 + 0 * 20, sectionBarRect.y + sectionBarRect.h - 18,16,16, strtorgba("ffff00ff"));
