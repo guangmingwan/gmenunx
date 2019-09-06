@@ -121,7 +121,7 @@ int Menu::sectionLinksSize() {
 		return 0;
 	}
 	else {
-		return sectionLinks().size();
+		return sectionLinks()->size();
 	}
 }
 linklist *Menu::sectionLinks(int i) {
