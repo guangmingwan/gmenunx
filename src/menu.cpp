@@ -116,7 +116,14 @@ void Menu::freeLinks() {
 		for (linklist::iterator link = section->begin(); link < section->end(); link++)
 			delete *link;
 }
-
+int Menu::sectionLinksSize() {
+	if(sectionLinks() == NULL) {
+		return 0;
+	}
+	else {
+		return sectionLinks().size();
+	}
+}
 linklist *Menu::sectionLinks(int i) {
 	if (i < 0 || i > (int)links.size())
 		i = selSectionIndex();
